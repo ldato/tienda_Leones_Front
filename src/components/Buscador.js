@@ -1,7 +1,7 @@
 import React from "react";
 import "bootstrap/dist/css/bootstrap.css";
 import "../App.css";
-import { Button } from "react-bootstrap";
+import { Button, Col, Row } from "react-bootstrap";
 
 function Buscador() {
 
@@ -29,8 +29,9 @@ function Buscador() {
     }
     return (
         <>
-        
-        <input 
+        <Row>
+            <Col>
+            <input 
         type="text" 
         className="altura-maxima largo-input" 
         placeholder="Ingrese el codigo de producto" 
@@ -38,6 +39,9 @@ function Buscador() {
         onChange={handleChange}
         />
         <Button className="espacio-izquierdo altura-maxima" onClick={Consultar} >Consultar</Button>
+            </Col>
+        </Row>
+        
         </>
     )
 }
