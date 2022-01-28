@@ -3,8 +3,8 @@ import "bootstrap/dist/css/bootstrap.css";
 import "../App.css";
 import { Button, Col, Container, Row } from "react-bootstrap";
 
-function Buscador({ producto, setProducto }) {
-    //const [articulo, setArticulo] = useState([{ marca: "marca", precio: 100, cantidad: 3 }]);
+function Buscador(props) {
+    const [producto, setProducto] = useState();
     let codigo = "";
     const handleChange = (e) => {
         e.preventDefault();
@@ -14,23 +14,34 @@ function Buscador({ producto, setProducto }) {
     }
 
     const Consultar = async () => {
-        const response = await fetch("http://localhost:3001/consultas/articulosxid/" + codigo)
-            .then(response => {
-                return response.json();
-            })
-            .then(data => {
-                //setArticulo(data);
-                if (data.length > 0) {
-                    producto = data;
-                    //    props = data;
-                    //    console.log(props);
-                    console.log(producto);                   
-                } else {
-                    console.log("No existe el articulo");
-                }
-            })
+        // const response = await fetch("http://localhost:3001/consultas/articulosxid/" + codigo)
+        //     .then(response => {
+        //         return response.json();
+        //     })
+        //     .then(data => {
+        //         //setArticulo(data);
+        //         if (data.length > 0) {                  
+        //                props = data;                                 
+        //         } else {
+        //             console.log("No existe el articulo");
+        //         }
+        //     })
+            const response = await fetch("http://localhost:3001/consultas/articulosxid/" + codigo);
+            const producto = await response.json();
+            if (producto.length>0) {
+                console.log(producto);
+                setProducto(producto);   
+                props.callback(producto)          
+            } else {
+                console.log("No existe el codigo de producto");
+            }            
     }
-    
+
+    // const Setear = () => {
+    //     props.callback(producto);
+    // }
+
+      
     return (
         <>
             <Container>
@@ -43,7 +54,10 @@ function Buscador({ producto, setProducto }) {
                             name="consulta"
                             onChange={handleChange}
                         />
-                        <Button className="espacio-izquierdo altura-maxima" onClick={Consultar} >Consultar</Button>
+                        <Button 
+                        className="espacio-izquierdo altura-maxima" 
+                        onClick={Consultar}>Consultar
+                        </Button>
                     </Col>
                 </Row>
 
