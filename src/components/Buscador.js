@@ -1,11 +1,12 @@
 import React, { useState } from "react";
 import "bootstrap/dist/css/bootstrap.css";
 import "../App.css";
-import { Button, Col, Container, Row } from "react-bootstrap";
+import { Button, Col, Container, Row, Table } from "react-bootstrap";
 
 function Buscador(props) {
-    const [producto, setProducto] = useState();
-    let codigo = "";
+    const [producto, setProducto] = useState([{ descripcion: "", marca: "", talle: "", precio: 0, cantidad: 0 }]);
+    let codigo;
+    let addProd;
     const handleChange = (e) => {
         e.preventDefault();
         const { value } = e.target;
@@ -26,22 +27,24 @@ function Buscador(props) {
         //             console.log("No existe el articulo");
         //         }
         //     })
-            const response = await fetch("http://localhost:3001/consultas/articulosxid/" + codigo);
-            const producto = await response.json();
-            if (producto.length>0) {
-                console.log(producto);
-                setProducto(producto);   
-                props.callback(producto)          
-            } else {
-                console.log("No existe el codigo de producto");
-            }            
+        const response = await fetch("http://localhost:3001/consultas/articulosxid/" + codigo);
+        const producto = await response.json();
+        addProd = producto;
+        if (producto.length > 0) {
+            console.log(producto);
+            setProducto(producto);
+            props.callback(producto);
+        } else {
+            console.log("No existe el codigo de producto");
+            alert("No existe un producto con el código ingresado")
+        }
     }
 
-    // const Setear = () => {
-    //     props.callback(producto);
-    // }
+    const Agregar = () => {
+        props.add(addProd)
+    }
 
-      
+
     return (
         <>
             <Container>
@@ -54,10 +57,36 @@ function Buscador(props) {
                             name="consulta"
                             onChange={handleChange}
                         />
-                        <Button 
-                        className="espacio-izquierdo altura-maxima" 
-                        onClick={Consultar}>Consultar
+                        <Button
+                            className="espacio-izquierdo altura-maxima"
+                            onClick={Consultar}>Consultar
                         </Button>
+                    </Col>
+                </Row>
+                <Row className="espacio-superior2">
+                    <Col>
+                        <Table striped bordered hover>
+                            <thead>
+                                <tr>
+                                    <th>Descripcion</th>
+                                    <th>Marca</th>
+                                    <th>Talle</th>
+                                    <th>Precio</th>
+                                    <th>Cantidad</th>
+                                    <th>Action</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>{producto[0].descripcion}</td>
+                                    <td>{producto[0].marca}</td>
+                                    <td>{producto[0].talle}</td>
+                                    <td>{producto[0].precio}</td>
+                                    <td>{producto[0].cantidad}</td>
+                                    <td><Button onClick={Agregar}>Agregar</Button></td>
+                                </tr>
+                            </tbody>
+                        </Table>
                     </Col>
                 </Row>
 
