@@ -83,7 +83,7 @@ function Buscador(props) {
                                     <td>{producto[0].talle}</td>
                                     <td>{producto[0].precio}</td>
                                     <td>{producto[0].cantidad}</td>
-                                    <td><Button onClick={Agregar}>Agregar</Button></td>
+                                    <td><Button onClick={Agregar}>Agregar a venta</Button></td>
                                 </tr>
                             </tbody>
                         </Table>

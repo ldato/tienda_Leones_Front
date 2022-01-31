@@ -3,6 +3,7 @@ import { Col, Container, Row } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.css";
 import "./App.css";
 import Buscador from "./components/Buscador";
+import TablaProducto from "./components/TablaProducto";
 // import TablaProducto from "./components/TablaProducto";
 
 
@@ -10,6 +11,7 @@ import Buscador from "./components/Buscador";
 function App(props) {
     const [venta, setVenta] = useState([]);
     const [producto, setProducto] = useState("");
+    let render;
 
     const addVenta = () => {
         setVenta(oldArray => [...oldArray, producto]);
@@ -26,7 +28,12 @@ function App(props) {
                 <Row className="Alto-Fila">
                 </Row>
                 <Row className="altura-fila">
-                    <Col className="centrar-contenido"><Buscador callback={getResponse} add={addVenta}/></Col>
+                    <Col xs={12} className="centrar-contenido"><Buscador callback={getResponse} add={addVenta}/></Col>
+                </Row>
+                <Row className="espacio-superior">
+                    <Col>
+                        <TablaProducto listaVenta={venta}/>
+                    </Col>
                 </Row>
             </Container>
         </>

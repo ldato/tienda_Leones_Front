@@ -2,40 +2,47 @@
 import React, { useState } from "react";
 import "bootstrap/dist/css/bootstrap.css";
 import "../App.css";
-import { Button, Row, Table } from "react-bootstrap";
+import { Button, Col, Row, Table } from "react-bootstrap";
 
 
 function TablaProducto(props) {
-       const [articulo, setArticulo] = useState("");
-       const getArticulo = async (props) => {
-           let set = await props;
-           return set;
-       }
+    const { listaVenta } = props;
+
     return (
-        // <tr>{listar}</tr>
+        
         <Row className="espacio-superior2">
-            <Table striped bordered hover>
-                <thead>
-                    <tr>
-                        <th>Descripcion</th>
-                        <th>Marca</th>
-                        <th>Talle</th>
-                        <th>Precio</th>
-                        <th>Cantidad</th>
-                        <th>Action</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>{articulo.descripcion}</td>
-                        <td>{articulo.marca}</td>
-                        <td>{articulo.talle}</td>
-                        <td>{articulo.precio}</td>
-                        <td>{articulo.cantidad}</td>
-                        <td><Button>Agregar</Button></td>
-                    </tr>
-                </tbody>
-            </Table>
+            <Col>
+                <Table striped bordered hover>
+                    <thead>
+                        <tr>
+                            <th>Descripcion</th>
+                            <th>Marca</th>
+                            <th>Talle</th>
+                            <th>Precio</th>
+                            <th>Cantidad</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {listaVenta.map((articulo, id) => {
+                            return (
+                            <>
+                                <tr key={id}>
+                                    {/* {console.log(articulo)} */}
+                                    <td >{articulo[0].descripcion}</td>
+                                    <td >{articulo[0].marca}</td>
+                                    <td >{articulo[0].talle}</td>
+                                    <td >{articulo[0].precio}</td>
+                                    <td >1</td>
+                                    <td ><Button>Quitar</Button></td>
+                                </tr>
+                            </>)
+                        })}
+
+
+                    </tbody>
+                </Table>
+            </Col>
         </Row>
     )
 
