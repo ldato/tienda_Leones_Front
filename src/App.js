@@ -4,6 +4,7 @@ import "bootstrap/dist/css/bootstrap.css";
 import "./App.css";
 import Buscador from "./components/Buscador";
 import TablaProducto from "./components/TablaProducto";
+import TotalVenta from "./components/TotalVenta";
 // import TablaProducto from "./components/TablaProducto";
 
 
@@ -53,8 +54,11 @@ function App(props) {
                     <Col xs={12} className="centrar-contenido"><Buscador callback={getResponse} add={addVenta} /></Col>
                 </Row>
                 <Row className="espacio-superior">
-                    <Col>
+                    <Col xs={4}>
                         <h3>Detalle de venta</h3>
+                    </Col>
+                    <Col>
+                    <TotalVenta listaVender={venta} />
                     </Col>
                 </Row>
                 <Row className="espacio-superior3">
@@ -62,6 +66,11 @@ function App(props) {
                         <TablaProducto listaVenta={venta} borrar={removeVenta} />
                     </Col>
                 </Row>
+                {/* <Row className="espacio-superior3">
+                    <Col>
+                        <TotalVenta listaVender={venta} />
+                    </Col>
+                </Row> */}
             </Container>
         </>
     )
