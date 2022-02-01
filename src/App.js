@@ -20,15 +20,26 @@ function App(props) {
         setProducto(result);
     }
 
-    const removeVenta = (index) => {
+    const removeVenta = (index, id) => {
         let newVenta = [];
-        console.log(index);
+        //console.log(index);
+        console.log(id);
         for (let i = 0; i < venta.length; i++) {
-            if (venta[i] !== index) {                
+            // if (venta[i] !== index) {                
+            //     newVenta.push(venta[i]);
+            //     // console.log(newVenta);
+            //     setVenta(newVenta);
+            // } 
+            if (i !== id) {
                 newVenta.push(venta[i]);
-                // console.log(newVenta);
+                console.log(newVenta);
                 setVenta(newVenta);
-            } 
+            }
+            if (id===0) {
+                newVenta.splice(0,1);
+                setVenta(newVenta);
+            }
+
 
         }
     }
@@ -42,6 +53,11 @@ function App(props) {
                     <Col xs={12} className="centrar-contenido"><Buscador callback={getResponse} add={addVenta} /></Col>
                 </Row>
                 <Row className="espacio-superior">
+                    <Col>
+                        <h3>Detalle de venta</h3>
+                    </Col>
+                </Row>
+                <Row className="espacio-superior3">
                     <Col>
                         <TablaProducto listaVenta={venta} borrar={removeVenta} />
                     </Col>

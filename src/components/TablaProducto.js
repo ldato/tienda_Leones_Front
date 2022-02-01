@@ -10,7 +10,8 @@ function TablaProducto(props) {
     const { listaVenta } = props;
         
     const removeItem = (id) => {
-        props.borrar(listaVenta[id]);
+        props.borrar(listaVenta[id], id);
+        console.log(id);
     }
 
      return (
