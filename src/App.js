@@ -11,6 +11,7 @@ import TablaProducto from "./components/TablaProducto";
 function App(props) {
     const [venta, setVenta] = useState([]);
     const [producto, setProducto] = useState("");
+    let newVenta = [];
 
     const addVenta = () => {
         setVenta(oldArray => [...oldArray, producto]);
@@ -21,7 +22,7 @@ function App(props) {
     }
 
     const removeVenta = (index, id) => {
-        let newVenta = [];
+       // let newVenta = [];
         //console.log(index);
         console.log(id);
         for (let i = 0; i < venta.length; i++) {
@@ -35,12 +36,11 @@ function App(props) {
                 console.log(newVenta);
                 setVenta(newVenta);
             }
-            if (id===0) {
+            if (i===0 && id===0) {
+                //newVenta.shift();
                 newVenta.splice(0,1);
                 setVenta(newVenta);
             }
-
-
         }
     }
 
