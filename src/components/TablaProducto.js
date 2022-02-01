@@ -5,10 +5,15 @@ import "../App.css";
 import { Button, Col, Row, Table } from "react-bootstrap";
 
 
+
 function TablaProducto(props) {
     const { listaVenta } = props;
+        
+    const removeItem = (id) => {
+        props.borrar(listaVenta[id]);
+    }
 
-    return (
+     return (
         
         <Row className="espacio-superior2">
             <Col>
@@ -28,13 +33,13 @@ function TablaProducto(props) {
                             return (
                             <>
                                 <tr key={id}>
-                                    {/* {console.log(articulo)} */}
+                                    {/* {console.log(id)} */}
                                     <td >{articulo[0].descripcion}</td>
                                     <td >{articulo[0].marca}</td>
                                     <td >{articulo[0].talle}</td>
                                     <td >{articulo[0].precio}</td>
                                     <td >1</td>
-                                    <td ><Button>Quitar</Button></td>
+                                    <td ><Button onClick={() => removeItem(id)}>Quitar</Button></td>
                                 </tr>
                             </>)
                         })}
