@@ -38,9 +38,9 @@ function TablaProducto(props) {
                                     <td >{articulo[0].descripcion}</td>
                                     <td >{articulo[0].marca}</td>
                                     <td >{articulo[0].talle}</td>
-                                    <td >{articulo[0].precio}</td>
+                                    <td >$ {articulo[0].precio}</td>
                                     <td >1</td>
-                                    <td ><Button onClick={() => removeItem(id)}>Quitar</Button></td>
+                                    <td ><Button onClick={() => removeItem(id)} variant="danger">Quitar</Button></td>
                                 </tr>
                             </>)
                         })}

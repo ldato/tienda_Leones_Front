@@ -41,7 +41,7 @@ function Buscador(props) {
     }
 
     const Agregar = () => {
-        props.add(addProd)
+       props.add(addProd)
     }
 
 
@@ -81,7 +81,7 @@ function Buscador(props) {
                                     <td>{producto[0].descripcion}</td>
                                     <td>{producto[0].marca}</td>
                                     <td>{producto[0].talle}</td>
-                                    <td>{producto[0].precio}</td>
+                                    <td>$ {producto[0].precio}</td>
                                     <td>{producto[0].cantidad}</td>
                                     <td><Button onClick={Agregar}>Agregar a venta</Button></td>
                                 </tr>

@@ -1,7 +1,7 @@
 import React from "react";
 import "bootstrap/dist/css/bootstrap.css";
 import "../App.css";
-import { Col, Row } from "react-bootstrap";
+import { Button, Col, Row } from "react-bootstrap";
 
 
 function TotalVenta(props) {
@@ -17,8 +17,11 @@ function TotalVenta(props) {
     return (
 
         <Row className="espacio-superior3">
-            <Col>
+            <Col xs={6}>
                 <h3>Total a cobrar: ${suma}</h3>
+            </Col>
+            <Col className="centrar-contenido">
+                <Button variant="success" size="lg">Realizar Venta</Button>
             </Col>
         </Row>
 
