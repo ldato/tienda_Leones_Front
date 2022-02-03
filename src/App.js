@@ -1,11 +1,13 @@
-import React, { useState } from "react";
+import React, { Fragment, useState } from "react";
 import { Col, Container, Row } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.css";
 import "./App.css";
 import Buscador from "./components/Buscador";
 import TablaProducto from "./components/TablaProducto";
 import TotalVenta from "./components/TotalVenta";
-// import TablaProducto from "./components/TablaProducto";
+
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import PruebaRedirect from "./components/PruebaRedirect";
 
 
 
@@ -46,8 +48,34 @@ function App(props) {
     }
 
     return (
-        <>
-            <Container>
+        <>  <Router>
+            <Routes>
+                <Route exact path="/PruebaRedirect" element={<PruebaRedirect />}/>
+                <Route exact path="/" element={ 
+                <Container>
+                <Row className="Alto-Fila">
+                </Row>
+                <Row className="altura-fila">
+                    <Col xs={12} className="centrar-contenido"><Buscador callback={getResponse} add={addVenta} /></Col>
+                </Row>
+                <Row className="espacio-superior">
+                    <Col xs={4}>
+                        <h3>Detalle de venta</h3>
+                    </Col>
+                    <Col>
+                    <TotalVenta listaVender={venta} />
+                    </Col>
+                </Row>
+                <Row className="espacio-superior3">
+                    <Col>
+                        <TablaProducto listaVenta={venta} borrar={removeVenta} />
+                    </Col>
+                </Row>           
+            </Container>
+            }/>
+            </Routes>
+                      
+            {/* <Container>
                 <Row className="Alto-Fila">
                 </Row>
                 <Row className="altura-fila">
@@ -66,12 +94,9 @@ function App(props) {
                         <TablaProducto listaVenta={venta} borrar={removeVenta} />
                     </Col>
                 </Row>
-                {/* <Row className="espacio-superior3">
-                    <Col>
-                        <TotalVenta listaVender={venta} />
-                    </Col>
-                </Row> */}
-            </Container>
+           
+            </Container> */}
+            </Router>  
         </>
     )
 }

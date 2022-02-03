@@ -3,6 +3,10 @@ import "bootstrap/dist/css/bootstrap.css";
 import "../App.css";
 import { Button, Col, Row } from "react-bootstrap";
 
+ //---------------------------------------------------------------------------------
+ import { useNavigate } from "react-router-dom";
+//--------------------------------------------------------------------------------
+
 
 function TotalVenta(props) {
     const { listaVender } = props;
@@ -13,6 +17,16 @@ function TotalVenta(props) {
         console.log(listaVender);
     }
 
+    //--------------------------------------------------------------------------------------
+    let navigate = useNavigate();
+
+    const Redireccionar = () => {
+        navigate("/PruebaRedirect");
+        console.log(navigate);
+    }
+
+    //--------------------------------------------------------------------------------------
+
 
     return (
 
@@ -21,10 +35,9 @@ function TotalVenta(props) {
                 <h3>Total a cobrar: ${suma}</h3>
             </Col>
             <Col className="centrar-contenido">
-                <Button variant="success" size="lg">Realizar Venta</Button>
+                <Button variant="success" size="lg" onClick={Redireccionar}>Realizar Venta</Button>
             </Col>
         </Row>
-
     )
 }
 
