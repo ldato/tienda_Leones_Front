@@ -15,18 +15,7 @@ function Buscador(props) {
     }
 
     const Consultar = async () => {
-        // const response = await fetch("http://localhost:3001/consultas/articulosxid/" + codigo)
-        //     .then(response => {
-        //         return response.json();
-        //     })
-        //     .then(data => {
-        //         //setArticulo(data);
-        //         if (data.length > 0) {                  
-        //                props = data;                                 
-        //         } else {
-        //             console.log("No existe el articulo");
-        //         }
-        //     })
+       
         const response = await fetch("http://localhost:3001/consultas/articulosxid/" + codigo);
         const producto = await response.json();
         addProd = producto;

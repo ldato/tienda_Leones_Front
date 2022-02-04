@@ -21,7 +21,7 @@ function TotalVenta(props) {
     let navigate = useNavigate();
 
     const Redireccionar = () => {
-        navigate("/PruebaRedirect");
+        navigate("/FormVenta");
         console.log(navigate);
     }
 

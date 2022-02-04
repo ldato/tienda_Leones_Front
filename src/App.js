@@ -7,7 +7,7 @@ import TablaProducto from "./components/TablaProducto";
 import TotalVenta from "./components/TotalVenta";
 
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import PruebaRedirect from "./components/PruebaRedirect";
+import FormVenta from "./components/FormVenta";
 
 
 
@@ -50,7 +50,7 @@ function App(props) {
     return (
         <>  <Router>
             <Routes>
-                <Route exact path="/PruebaRedirect" element={<PruebaRedirect />}/>
+                <Route exact path="/FormVenta" element={<FormVenta />}/>
                 <Route exact path="/" element={ 
                 <Container>
                 <Row className="Alto-Fila">
