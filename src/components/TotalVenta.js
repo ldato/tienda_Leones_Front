@@ -13,7 +13,7 @@ function TotalVenta(props) {
     let suma = 0;
 
     for (let i = 0; i < listaVender.length; i++) {
-        suma = suma + listaVender[i][0].precio;
+        suma = suma + (listaVender[i][0].precio * listaVender[i][0].cantidad);
         console.log(listaVender);
     }
 

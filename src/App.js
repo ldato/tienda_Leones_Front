@@ -50,7 +50,7 @@ function App(props) {
     return (
         <>  <Router>
             <Routes>
-                <Route exact path="/FormVenta" element={<FormVenta />}/>
+                <Route exact path="/FormVenta" element={<FormVenta ventaProp={venta} />}/>
                 <Route exact path="/" element={ 
                 <Container>
                 <Row className="Alto-Fila">
@@ -74,28 +74,7 @@ function App(props) {
             </Container>
             }/>
             </Routes>
-                      
-            {/* <Container>
-                <Row className="Alto-Fila">
-                </Row>
-                <Row className="altura-fila">
-                    <Col xs={12} className="centrar-contenido"><Buscador callback={getResponse} add={addVenta} /></Col>
-                </Row>
-                <Row className="espacio-superior">
-                    <Col xs={4}>
-                        <h3>Detalle de venta</h3>
-                    </Col>
-                    <Col>
-                    <TotalVenta listaVender={venta} />
-                    </Col>
-                </Row>
-                <Row className="espacio-superior3">
-                    <Col>
-                        <TablaProducto listaVenta={venta} borrar={removeVenta} />
-                    </Col>
-                </Row>
-           
-            </Container> */}
+            
             </Router>  
         </>
     )

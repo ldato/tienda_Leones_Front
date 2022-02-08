@@ -7,12 +7,22 @@ function Buscador(props) {
     const [producto, setProducto] = useState([{ descripcion: "", marca: "", talle: "", precio: 0, cantidad: 0 }]);
     let codigo;
     let addProd;
+    let cant="";
     const handleChange = (e) => {
         e.preventDefault();
         const { value } = e.target;
         codigo = value;
         //console.log(codigo);
     }
+
+    const handleChangeCant = (e) => {
+        e.preventDefault();
+        const { value } = e.target;
+        cant = parseInt(value);
+        console.log(cant);
+    }
+
+
 
     const Consultar = async () => {
        
@@ -30,7 +40,23 @@ function Buscador(props) {
     }
 
     const Agregar = () => {
-       props.add(addProd)
+        if (producto[0].descripcion==="") {
+            alert("Debe consultar un producto antes de cargar la venta");
+        } 
+        else {
+            if (cant==="") {
+                producto[0].cantidad=1;
+                props.add(addProd);
+                console.log(producto);
+            } else {
+                producto[0].cantidad = cant;
+                props.add(addProd)
+                console.log(producto);
+            }
+            
+        }
+       
+       
     }
 
 
@@ -71,7 +97,13 @@ function Buscador(props) {
                                     <td>{producto[0].marca}</td>
                                     <td>{producto[0].talle}</td>
                                     <td>$ {producto[0].precio}</td>
-                                    <td>{producto[0].cantidad}</td>
+                                    <td>
+                                        <input 
+                                            type="number"
+                                            placeholder="Ingrese Cantidad"
+                                            onChange={handleChangeCant}
+                                        />
+                                    </td>
                                     <td><Button onClick={Agregar}>Agregar a venta</Button></td>
                                 </tr>
                             </tbody>
