@@ -35,8 +35,9 @@ function FormVenta(props) {
 
     //------------------------------------------------------------------------
 
-    const irHome = () => {
-        navigate("/")
+    const irHome = async () => {
+        navigate("/");
+        window.location.reload();
     }
 
     const ConsultarCliente = async () => {
@@ -47,15 +48,44 @@ function FormVenta(props) {
             setCliente(clienteVacio);
         } else {
             setCliente(cliente);
-            console.log(cliente.length);
+            //console.log(cliente.length);
+            console.log(cliente[0].idClienteDNI);
         }
     }
 
     const ConfirmarVenta = async () => {
-        console.log("Cliente:");
-        console.log(cliente);
-        console.log("Venta: ");
-        console.log(venta);
+            let total = suma;
+            let clienteDNI = cliente[0].idClienteDNI;
+            console.log("Cliente:");
+            console.log(cliente);
+            console.log("Venta: ");
+            console.log(venta);
+            console.log("Total");
+            console.log(suma);
+
+            if (cliente[0].nombre==="") {
+                alert("Debe ingresar un cliente");
+            } else {
+                const requestOptions = {
+                    method: 'POST',
+                    headers: {'Content-Type': 'application/json'},
+                    body: JSON.stringify({venta, clienteDNI, total})
+                };
+            const response = await fetch("http://localhost:3001/ventas/venta", requestOptions);
+            const data = await response.json();
+            //console.log(data);
+                if (data===200) {
+                    alert("La venta fue realizada con exito");
+                    setTimeout(() => {
+                        irHome();
+                    }, 2000);
+                } else {
+                    alert("Hubo un problema con la venta");
+                }
+            }
+
+            
+            
     }
 
     return (
